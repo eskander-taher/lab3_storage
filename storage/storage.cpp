@@ -139,6 +139,53 @@ public:
         return *objects[i];
     }
 
+
+    void addObjects(int index, Ancestor* object)
+    {
+        size = index + 1;
+        Ancestor** new_objects = new Ancestor * [size];
+
+        for (int i = 0; i < index; i++)
+            new_objects[i] = objects[i];
+
+        delete[] objects;
+
+        objects = new_objects;
+
+        objects[index] = object;
+    }
+
+    void deleteObject(int index)
+    {
+        size--;
+
+        Ancestor** new_objects = new Ancestor * [size];
+
+        for (int i = 0; i < index; i++)
+        {
+            new_objects[i] = objects[i];
+        }
+
+        for (int i = index; i < size; i++)
+        {
+            new_objects[i] = objects[i + 1];
+        }
+
+        delete[] objects;
+
+        objects = new_objects;
+    }
+
+    int getVolume()
+    {
+        int volume = 0;
+
+        for (int i = 0; i < size; i++)
+            if (objects[i] != NULL)
+                volume++;
+
+        return volume;
+    }
 };
 
 
