@@ -66,6 +66,40 @@ public:
 };
 
 
+class RoundedReqtangle : public Reqtangle
+{
+protected:
+    int radus;
+
+public:
+    RoundedReqtangle() : Reqtangle()
+    {
+        radus = 0;
+    }
+
+    RoundedReqtangle(int req_length, int req_width, int req_radus) : Reqtangle(req_length, req_width)
+    {
+        this->radus = req_radus;
+    }
+
+    RoundedReqtangle(const RoundedReqtangle& obj)
+    {
+        length = obj.length;
+        width = obj.width;
+        radus = obj.radus;
+    }
+
+    ~RoundedReqtangle()
+    {
+    }
+
+    void changeRadus(int new_radus)
+    {
+        radus = new_radus;
+    }
+};
+
+
 int main()
 {
     return 0;
