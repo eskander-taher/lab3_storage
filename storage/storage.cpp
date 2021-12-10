@@ -24,32 +24,32 @@ public:
 };
 
 
-class Reqtangle : public Ancestor
+class Rectangle : public Ancestor
 {
 protected:
     int length;
     int width;
 
 public:
-    Reqtangle()
+    Rectangle()
     {
         length = 0;
         width = 0;
     }
 
-    Reqtangle(int req_length, int req_width)
+    Rectangle(int req_length, int req_width)
     {
         this->length = req_length;
         this->width = req_width;
     }
 
-    Reqtangle(Reqtangle& obj)
+    Rectangle(const Rectangle& obj)
     {
         length = obj.length;
         width = obj.width;
     }
 
-    ~Reqtangle() override
+    ~Rectangle() override
     {
     }
 
@@ -66,30 +66,30 @@ public:
 };
 
 
-class RoundedReqtangle : public Reqtangle
+class RoundedRectangle : public Rectangle
 {
 protected:
     int radus;
 
 public:
-    RoundedReqtangle() : Reqtangle()
+    RoundedRectangle() : Rectangle()
     {
         radus = 0;
     }
 
-    RoundedReqtangle(int req_length, int req_width, int req_radus) : Reqtangle(req_length, req_width)
+    RoundedRectangle(int req_length, int req_width, int req_radus) : Rectangle(req_length, req_width)
     {
         this->radus = req_radus;
     }
 
-    RoundedReqtangle(const RoundedReqtangle& obj)
+    RoundedRectangle(const RoundedRectangle& obj)
     {
         length = obj.length;
         width = obj.width;
         radus = obj.radus;
     }
 
-    ~RoundedReqtangle()
+    ~RoundedRectangle()
     {
     }
 
@@ -97,6 +97,48 @@ public:
     {
         radus = new_radus;
     }
+};
+
+
+class Storage
+{
+private:
+    Ancestor** objects;
+    int size;
+
+public:
+    Storage(int size)
+    {
+        this->size = size;
+        objects = new Ancestor * [size];
+    }
+
+    ~Storage()
+    {
+        delete[] objects;
+        printf("delete\n");
+    }
+
+    void setObject(int i, Ancestor* object)
+    {
+        objects[i] = object;
+    }
+
+    int getCount()
+    {
+        return size;
+    }
+
+    void nullObject(int i)
+    {
+        objects[i] = NULL;
+    }
+
+    Ancestor& getObject(int i)
+    {
+        return *objects[i];
+    }
+
 };
 
 
