@@ -189,8 +189,67 @@ public:
 };
 
 
+void test_storage(int size)
+{
+    time_t start, end;
+
+    time(&start);
+
+    srand(time(NULL));
+
+    Storage s1(size);
+
+    for (int i = 0; i < s1.getCount(); i++)
+    {
+        s1.setObject(i, new Rectangle(i / 5, i / 10));
+    }
+
+    for (int i = 0; i < s1.getCount(); i++)
+    {
+        if (rand() % 2 == 0)
+            s1.getObject(i).draw();
+        else
+            s1.getObject(i).area(1, 1);
+    }
+
+    yellow("Initial size = " + to_string(s1.getCount()));
+
+    s1.addObjects(s1.getCount(), new RoundedRectangle());
+
+    yellow("Size after adding Rounded Rectangle = " + to_string(s1.getCount()));
+
+    s1.nullObject(rand() % size);
+
+    yellow("Size after initializing the ojb with null = " + to_string(s1.getCount()));
+
+    yellow("Size of used objects " + to_string(s1.getVolume()));
+
+    s1.deleteObject((rand() * rand()) % size);
+
+    yellow("Size after object deletion " + to_string(s1.getCount()));
+    
+    yellow("Size of used objects " + to_string(s1.getVolume()));
+
+
+    time(&end);
+
+    highlight("Execution time" + to_string(difftime(end, start)));
+
+}
+
+
 int main()
 {
+    test_storage(100);
+
+    test_storage(1000);
+
+    test_storage(10000);
+
     return 0;
 }
 
+
+void grean(string s) { printf("\033[1;32m"); cout << " " << s << " "; printf("\033[0m"); }
+void yellow(string s) { printf("\033[1;33m"); cout << endl << s << endl ; printf("\033[0m"); }
+void highlight(string s) { printf("\033[1;7m"); cout << endl << s << endl ; printf("\033[0m"); }

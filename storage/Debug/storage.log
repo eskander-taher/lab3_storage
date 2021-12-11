@@ -1,0 +1,3 @@
+﻿  storage.cpp
+F:\1-UGATU\1ST sem 2ND year\Объектно-ориентированное программирование\labs UGATU\lab3_storage\storage\storage\storage.cpp(197,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  storage.vcxproj -> F:\1-UGATU\1ST sem 2ND year\Объектно-ориентированное программирование\labs UGATU\lab3_storage\storage\Debug\storage.exe
