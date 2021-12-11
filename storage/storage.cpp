@@ -246,6 +246,7 @@ int main()
 
     test_storage(10000);
 
+    system("pause");
     return 0;
 }
 
